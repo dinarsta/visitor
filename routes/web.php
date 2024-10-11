@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VisitorController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Redirect the root URL to the visitor form
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('visitor.form', ['qr_code' => 'YOUR_QR_CODE_HERE']);
 });
+
+// Route to show the visitor form
+Route::get('/visitor/form/{qr_code}', [VisitorController::class, 'showForm'])->name('visitor.form');
+
+// Route to handle the form submission
+Route::post('/visitor/form/submit', [VisitorController::class, 'submitForm']);
