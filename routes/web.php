@@ -17,11 +17,11 @@ use App\Http\Controllers\VisitorController;
 
 // Redirect the root URL to the visitor form
 Route::get('/', function () {
-    return redirect()->route('visitor.form', ['qr_code' => 'YOUR_QR_CODE_HERE']);
+    return redirect()->route('visitor.form');
 });
 
 // Route to show the visitor form
-Route::get('/visitor/form/{qr_code}', [VisitorController::class, 'showForm'])->name('visitor.form');
+Route::get('/visitor/form', [VisitorController::class, 'showForm'])->name('visitor.form');
 
 // Route to handle the form submission
 Route::post('/visitor/form/submit', [VisitorController::class, 'submitForm']);

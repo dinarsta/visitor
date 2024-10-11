@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,11 +27,24 @@
         <!-- Right side with form -->
         <div class="md:w-1/2 w-full p-8">
             <h2 class="text-4xl font-semibold mb-6 text-center text-grey-400">PT PRIMANUSA MUKTI UTAMA</h2>
-            <p class="text-center text-gray-400 mb-8">Please fill in your details to help us serve you better.</p>
+            <p class="text-center text-gray-400 mb-8">Silakan isi data Anda untuk membantu kami memberikan layanan yang lebih baik.</p>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
             <form action="/visitor/form/submit" method="POST">
                 @csrf
-                <input type="hidden" name="qr_code" value="{{ $qr_code }}">
 
                 <!-- Name field -->
                 <div class="mb-4">
@@ -53,9 +66,8 @@
 
                 <!-- Submit button -->
                 <div class="text-center">
-                    <button type="submit" class="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg transition duration-900">Submit</button>
+                    <button type="submit" class="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg transition duration-900">Kirim</button>
                 </div>
-
             </form>
         </div>
     </div>
@@ -63,8 +75,8 @@
     <!-- Footer -->
     <footer class="bg-gray-800 py-6">
         <div class="container mx-auto text-center">
-            <p class="text-gray-400 mb-4">© 2024 PT PRIMANUSA MUKTI UTAMA. All rights reserved.</p>
-            <p class="text-gray-400">Follow us on:</p>
+            <p class="text-gray-400 mb-4">© 2024 PT PRIMANUSA MUKTI UTAMA. Semua hak dilindungi.</p>
+            <p class="text-gray-400">Ikuti kami di:</p>
             <div class="flex justify-center space-x-4 mt-2">
                 <a href="https://www.instagram.com/primanusamuktiutama/profilecard/?igsh=MWViZHBxbzBtZ2NzcQ==" class="text-gray-400 hover:text-purple-400 transition duration-300" target="_blank"><i class="bi bi-instagram"></i></a>
                 <a href="https://youtube.com/@pmu2006?si=xHMSDrc2mPm2dGcM" class="text-gray-400 hover:text-purple-400 transition duration-300" target="_blank"><i class="bi bi-youtube"></i></a>

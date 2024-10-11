@@ -10,5 +10,5 @@ class Visitor extends Model
     {
         use HasFactory;
 
-        protected $fillable = ['name', 'instansi', 'phone', 'qr_code', 'form_filled'];
+        protected $fillable = ['name', 'instansi', 'phone'];
     }

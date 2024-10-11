@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('instansi');
             $table->string('phone');
-            $table->string('qr_code')->unique();
-            $table->boolean('form_filled')->default(false); // Status form
+            // Menghapus kolom qr_code dan form_filled
             $table->timestamps();
         });
     }
