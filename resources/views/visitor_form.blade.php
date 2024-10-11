@@ -28,21 +28,26 @@
         <div class="md:w-1/2 w-full p-8">
             <h2 class="text-4xl font-semibold mb-6 text-center text-grey-400">PT PRIMANUSA MUKTI UTAMA</h2>
             <p class="text-center text-gray-400 mb-8">Silakan isi data Anda untuk membantu kami memberikan layanan yang lebih baik.</p>
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
 
-        @if (session('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
+            @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-        @endif
+            @endif
+
+            @if (session('message'))
+                <!-- Modal Pop-up -->
+                <div class="fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center z-50">
+                    <div class="bg-gray-800 rounded-xl shadow-2xl p-10 max-w-md mx-auto text-center">
+                        <i class="fas fa-check-circle text-green-500 text-6xl mb-6"></i>
+                        <h1 class="text-4xl font-extrabold mb-4">Terima Kasih!</h1>
+                        <p class="text-gray-400 text-lg mb-8">Formulir Anda telah diterima. Kami menghargai respon Anda.</p>
+                        <button class="bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg px-6" onclick="closeModal()">Tutup</button>
+                    </div>
+                </div>
+            @endif
+
             <form action="/visitor/form/submit" method="POST">
                 @csrf
 
@@ -85,6 +90,13 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Function to close modal
+        function closeModal() {
+            document.querySelector('.fixed.inset-0').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
