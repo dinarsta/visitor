@@ -28,7 +28,7 @@ class VisitorController extends Controller
 
         if ($existingVisitor) {
             // Jika nomor telepon sudah terdaftar, kembalikan ke form dengan pesan error
-            return redirect()->back()->with('error', 'Nomor telepon ini sudah terdaftar. Silakan gunakan nomor yang berbeda.');
+            return redirect()->back()->with('error', 'Data sudah terdaftar.');
         }
 
         // Buat entry baru jika nomor belum ada
